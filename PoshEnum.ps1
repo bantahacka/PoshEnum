@@ -1,4 +1,4 @@
-﻿### PoshEnum v0.1                            ###
+### PoshEnum v0.1                            ###
 ### Enumeration script for Windows           ###
 ### Set execution policy to Bypass to run    ###
 ### TODO: Dump output to a writeable path    ###
@@ -106,7 +106,12 @@ Get-NetNeighbor | ft IPAddress, LinkLayerAddress, State -AutoSize
 # Get the routing table
 Write-Host "
 Routing Table: " -ForegroundColor Cyan;
-Get-NetRoute | ft DestinationPrefix,NextHop,RouteMetric; 
+Get-NetRoute | ft DestinationPrefix,NextHop,RouteMetric -Autosize; 
+
+# List All TCP Connections
+Write-Host "
+TCP Connections: " -ForegroundColor Cyan;
+Get-NetTCPConnection | ft LocalAddress,LocalPort,RemoteAddress,RemotePort,State,OwningProcess -AutoSize
 
 # Check DNS entries by checking ipconfig /displaydns and %systemroot%\system32\drivers\etc\hosts
 Write-Host " 
